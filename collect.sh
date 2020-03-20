@@ -1,4 +1,4 @@
-dt=2020-02-26T00:00:00-08:00 # PST ended march 07 (-8 → -7)
+dt=2020-02-20T00:00:00-08:00 # PST ended march 07 (-8 → -7)
 now=$(date +%s)
 
 while [ $(date -d $dt +%s) -le $now ]; do
@@ -6,7 +6,7 @@ while [ $(date -d $dt +%s) -le $now ]; do
   archivedt=$(
     https --headers https://web.archive.org/web/$(date -d $dt +%Y%m%d)/https://www.doh.wa.gov/Emergencies/Coronavirus \
     | grep -Po 'X-Archive-Redirect-Reason: found capture at \K\d+' \
-    | sed 's/\([0-9]\{4\}\)\([0-9]\{2\}\)\([0-9]\{2\}\)\([0-9]\{2\}\)\([0-9]\{2\}\)\([0-9]\{2\}\)/\1-\2-\3T\4:\5:\6/' \
+    | sed 's/\([0-9]\{4\}\)\([0-9]\{2\}\)\([0-9]\{2\}\)\([0-9]\{2\}\)\([0-9]\{2\}\)\([0-9]\{2\}\)/\1-\2-\3T\4:\5:\6Z/' \
     )
 
   archivedt=$(date --iso-8601=seconds -d $archivedt)
@@ -25,5 +25,5 @@ while [ $(date -d $dt +%s) -le $now ]; do
 
   echo "downloaded to $archivedt.html successfully"
 
-  dt=$(date --iso-8601=seconds -d "$dt + 6 hours")
+  dt=$(date --iso-8601=seconds -d "$dt + 3 hours")
 done

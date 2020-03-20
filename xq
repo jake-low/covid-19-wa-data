@@ -16,11 +16,10 @@ else:
 
 doc = etree.HTML(handle.read())
 
-results = doc.findall(path)
+results = doc.xpath(path)
 
 if not results:
     exit(1)
 
 for elem in results:
     print(etree.tostring(elem, pretty_print=True).decode("utf-8"))
-	
