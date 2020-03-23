@@ -14,7 +14,7 @@ while true; do
   node scrape.js > $dt.html
   kill $(jobs -pr)
 
-  if [ $(wc -c $dt.html) -lt 25000 ]; then
+  if [ $(wc -c < $dt.html) -lt 25000 ]; then
     echo "Failed? File size unexpectedly small."
   else
     echo "Succeessfully scraped page."
