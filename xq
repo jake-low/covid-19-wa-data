@@ -16,7 +16,7 @@ else:
 
 doc = etree.HTML(handle.read())
 
-results = doc.xpath(path)
+results = doc.xpath(path, namespaces={"re": "http://exslt.org/regular-expressions"})
 
 if not results:
     exit(1)

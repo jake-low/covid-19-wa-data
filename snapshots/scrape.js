@@ -1,26 +1,35 @@
-const CDP = require('chrome-remote-interface');
+const CDP = require("chrome-remote-interface");
 
-CDP((client) => {
-  // Extract used DevTools domains.
-  const {Page, Runtime} = client;
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
-  // Enable events on domains we are interested in.
-  Promise.all([
-    Page.enable()
-  ]).then(() => {
-    return Page.navigate({url: 'https://www.doh.wa.gov/Emergencies/Coronavirus'});
-  });
+async function scrape(url) {
+    let client;
 
-  // Evaluate outerHTML after page has loaded.
-  Page.loadEventFired(() => {
-    setTimeout(() => {
-      Runtime.evaluate({expression: 'document.body.outerHTML'}).then((result) => {
-        console.log(result.result.value);
-        client.close();
-      });
-    }, 5000);
-  });
-}).on('error', (err) => {
-  console.error('Cannot connect to browser:', err);
-  process.exit(1);
-});
+    try {
+        client = await CDP();
+
+        const {Page, Runtime} = client;
+
+        await Page.enable();
+        await Page.navigate({ url });
+        await Page.loadEventFired();
+
+        await delay(5000);
+
+        const result = await Runtime.evaluate({
+          expression: "document.documentElement.outerHTML"
+        });
+
+        const html = result.result.value;
+
+        console.log(html);
+    } catch (err) {
+        console.error(err);
+    } finally {
+        if (client) {
+            await client.close();
+        }
+    }
+}
+
+scrape(process.argv[2]);
