@@ -1,0 +1,41 @@
+County,Cases,Deaths,Tests
+Adams,7,0,36
+Asotin,0,0,21
+Benton,101,3,627
+Chelan,14,1,250
+Clallam,6,0,203
+Clark,68,5,879
+Columbia,1,0,35
+Cowlitz,13,0,187
+Douglas,5,0,115
+Ferry,1,0,60
+Franklin,32,0,215
+Garfield,0,0,3
+Grant,50,1,351
+Grays Harbor,1,0,181
+Island,95,1,544
+Jefferson,14,0,150
+King,2161,144,16471
+Kitsap,56,0,1356
+Kittitas,7,0,346
+Klickitat,7,1,104
+Lewis,10,0,312
+Lincoln,1,0,61
+Mason,2,0,310
+Okanogan,3,0,110
+Pacific,0,0,27
+Pend Oreille,0,0,92
+Pierce,288,6,5614
+San Juan,3,0,82
+Skagit,101,3,486
+Skamania,1,0,20
+Snohomish,1068,21,8038
+Spokane,136,2,3712
+Stevens,3,0,191
+Thurston,36,0,1707
+Wahkiakum,0,0,12
+Walla Walla,6,0,392
+Whatcom,111,4,724
+Whitman,6,0,137
+Yakima,95,2,857
+Unassigned,387,1,20444

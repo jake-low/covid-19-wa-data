@@ -3,6 +3,7 @@ for filename in *.cleaned.csv; do
   tmpfile=$(mktemp tmp.XXXXXX.csv)
 
   cat $filename \
+    | xsv select "County,Cases,Deaths" \
     | sed "1s/^/Date,/; 2,\$s/^/$dt,/" \
     > $tmpfile
 done
